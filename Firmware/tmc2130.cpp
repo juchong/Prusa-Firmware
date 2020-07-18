@@ -399,7 +399,8 @@ void tmc2130_check_overtemp()
 			skip_debug_msg = true;
 			tmc2130_rd(i, TMC2130_REG_DRV_STATUS, &drv_status);
 			if (drv_status & ((uint32_t)1 << 26))
-			{ // BIT 26 - over temp prewarning ~120C (+-20C)
+			{ // BIT 26 - over temp prewarning ~120C
+			  // BIT 25 - over temp error ~150C
 				SERIAL_ERRORRPGM(MSG_TMC_OVERTEMP);
 				SERIAL_ECHOLN(i);
 				for (uint_least8_t j = 0; j < 4; j++)
